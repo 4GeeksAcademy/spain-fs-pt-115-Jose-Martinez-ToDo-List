@@ -1,11 +1,149 @@
-/* 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background: #0b0b0b;
+    overflow-x: hidden;
+}
 
-*/
+/* para el fondo animado */
+.background-animado {
+    position: fixed; 
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    z-index: -1;
+}
+
+.background-animado span {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    bottom: -150px;
+    background: rgba(255, 255, 255, 0.15);
+    z-index: 0;
+    animation: animate 15s linear infinite;
+}
+
+/* Posiciones y retardos aleatorios para cada cuadrado */
+.background-animado span:nth-child(1) { left: 60%; animation-delay: 0s; }
+.background-animado span:nth-child(2) { left: 10%; animation-delay: 3s; animation-duration: 5s; }
+.background-animado span:nth-child(3) { left: 20%; animation-delay: 2s; }
+.background-animado span:nth-child(4) { left: 30%; animation-delay: 5s; animation-duration: 18s; }
+.background-animado span:nth-child(5) { left: 40%; animation-delay: 1s; }
+.background-animado span:nth-child(6) { left: 50%; animation-delay: 7s; }
+.background-animado span:nth-child(7) { left: 60%; animation-delay: 6s; animation-duration: 12s; }
+.background-animado span:nth-child(8) { left: 70%; animation-delay: 8s; }
+.background-animado span:nth-child(9) { left: 80%; animation-delay: 6s; animation-duration: 9s; }
+.background-animado span:nth-child(10) { left: 90%; animation-delay: 4s; }
+.background-animado span:nth-child(11) { left: 55%; animation-delay: 9s; }
+.background-animado span:nth-child(12) { left: 15%; animation-delay: 11s; animation-duration: 10s; }
+.background-animado span:nth-child(13) { left: 25%; animation-delay: 12s; }
+.background-animado span:nth-child(14) { left: 35%; animation-delay: 13s; animation-duration: 18s; }
+.background-animado span:nth-child(15) { left: 45%; animation-delay: 11s; }
+.background-animado span:nth-child(16) { left: 65%; animation-delay: 17s; }
+.background-animado span:nth-child(17) { left: 75%; animation-delay: 16s; animation-duration: 12s; }
+.background-animado span:nth-child(18) { left: 85%; animation-delay: 18s; }
+.background-animado span:nth-child(19) { left: 95%; animation-delay: 16s; animation-duration: 9s; }
+.background-animado span:nth-child(20) { left: 5%; animation-delay: 14s; }
+
+@keyframes animate {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+    100% { transform: translateY(-120vh) rotate(720deg); opacity: 0; border-radius: 50%; }
+}
+
+.app-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.todo-wrapper {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 20px 30px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+}
+
+.todo-header {
+    text-align: center;
+    color: #1a253c;
+    margin-bottom: 30px;
+}
+
+.todo-header h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    font-weight: 600;
+}
+
+/*estilos de los inputs y de las tareas.*/
+.input-area { margin-bottom: 25px; position: relative; }
+.todo-input { width: 100%; padding: 18px 20px; border-radius: 12px; border: 1px solid #dfe6e9; font-size: 1rem; box-sizing: border-box; transition: all 0.3s ease; }
+.todo-input:focus { outline: none; border-color: #8e44ad; box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.2); }
+.task-list h2 { color: #6c757d; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #dfe6e9; padding-bottom: 10px; margin-top: 30px; }
+.task-block { display: flex; justify-content: space-between; align-items: center; background: #ffffff; border: 1px solid #e9ecef; padding: 20px; border-radius: 12px; margin-bottom: 15px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); word-break: break-word; }
+.task-block:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); }
+.task-text { cursor: pointer; flex-grow: 1; color: #495057; }
+.task-block.completed { background-color: #e6f8f0; border-color: #58d68d; }
+.task-block.completed .task-text { text-decoration: line-through; color: #999; }
+.task-actions { display: flex; gap: 15px; margin-left: 15px; }
+.action-btn { background: transparent; border: none; cursor: pointer; width: 20px; height: 20px; background-repeat: no-repeat; background-position: center; transition: transform 0.2s ease; }
+.action-btn:hover { transform: scale(1.2); }
+.edit-btn { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20h9'%3E%3C/path%3E%3Cpath d='M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z'%3E%3C/path%3E%3C/svg%3E"); }
+.delete-btn { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23e74c3c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='3 6 5 6 21 6'%3E%3C/polyline%3E%3Cpath d='M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'%3E%3C/path%3E%3C/svg%3E"); }
+.edit-input { flex-grow: 1; border: none; font-size: 1rem; padding: 0; margin: 0; border-bottom: 2px solid #8e44ad; }
+.edit-input:focus { outline: none; }
+.empty-message { color: #aaa; text-align: center; padding: 10px; }
+.export-section { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #dfe6e9; }
+.export-info { font-size: 0.9rem; color: #6c757d; margin-bottom: 15px; }
+.btn-export-svg { position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 15px 30px; border: 2px solid #007bff; border-radius: 8px; background-color: #007bff; color: #fff; font-size: 1rem; font-weight: 600; text-decoration: none; overflow: hidden; cursor: pointer; transition: all .6s cubic-bezier(0.25, 1, 0.5, 1); }
+.btn-export-svg span { position: relative; z-index: 2; transition: all .6s cubic-bezier(0.25, 1, 0.5, 1); }
+.btn-export-svg svg { position: absolute; z-index: 1; left: -10%; top: 50%; transform: translateY(-50%) translateX(-120%); width: 35px; height: 35px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: all .6s cubic-bezier(0.25, 1, 0.5, 1); }
+.btn-export-svg:hover { background-color: #0056b3; border-color: #0056b3; }
+.btn-export-svg:hover span { transform: translateX(15px); }
+.btn-export-svg:hover svg { transform: translateY(-50%) translateX(0%); }
+
+/* parte responsive */
+@media (max-width: 640px) {
+    .app-container {
+        padding: 20px 10px; 
+    }
+
+    .todo-wrapper {
+        padding: 15px 20px; 
+    }
+
+    .todo-header h1 {
+        font-size: 2.2rem; 
+    }
+    
+    .todo-input {
+        padding: 15px;
+    }
+    
+    .task-block {
+        padding: 15px;
+        font-size: 0.95rem; 
+    }
+
+    .task-actions {
+        gap: 10px; 
+    }
+
+    .btn-export-svg {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+    }
+}
